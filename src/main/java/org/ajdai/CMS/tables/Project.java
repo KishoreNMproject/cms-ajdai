@@ -1,4 +1,4 @@
-package org.ajdai.CMS;
+package org.ajdai.CMS.tables;
 
 import org.hibernate.annotations.Audited.Table;
 

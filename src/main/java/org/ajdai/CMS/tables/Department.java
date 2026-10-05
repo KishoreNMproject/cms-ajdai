@@ -1,4 +1,4 @@
-package org.ajdai.CMS;
+package org.ajdai.CMS.tables;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
