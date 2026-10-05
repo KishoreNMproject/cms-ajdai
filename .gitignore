@@ -1,6 +1,6 @@
-src\main\resources\hibernate.cfg.xml\ 
 /target/
 .classpath
 .project
 .settings/
 *.class
+*.cfg.xml
