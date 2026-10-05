@@ -103,7 +103,7 @@ public class Employee {
     public void setProjects(Set<Project> projects) {
         this.projects = projects;
     }
-
+//checking eclipse integration
     public void addProject(Project project) {
         projects.add(project);
     }
