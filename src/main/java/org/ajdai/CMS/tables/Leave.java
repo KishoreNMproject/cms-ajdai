@@ -16,7 +16,7 @@ public class Leave {
 	
 	private int leaveTaken;
 
-	private int RemainingLeaves;
+//	private int RemainingLeaves;
 	
 	public int getEmployeeID() {
 		return EmployeeID;
@@ -34,9 +34,9 @@ public class Leave {
 		this.leaveTaken = leaveTaken;
 	}
 
-	public void setRemainingLeaves(int remainingLeaves) {
-		this.RemainingLeaves = remainingLeaves;
-	}
+//	public void setRemainingLeaves(int remainingLeaves) {
+//		this.RemainingLeaves = remainingLeaves;
+//	}
 
 	public void takeLeave(int days) {
         if (days <= getRemainingLeaves()) {

@@ -35,10 +35,8 @@ public class Application {
                     double second =reviews.get(i + 1).getProductivity();
                     double third =reviews.get(i + 2).getProductivity();
                     if (first > second && second > third) {
-
                         System.out.println(employee.getName() + " productivity decreased for 3 consecutive months."
                         );
-
                         break;
                     }
                 }
