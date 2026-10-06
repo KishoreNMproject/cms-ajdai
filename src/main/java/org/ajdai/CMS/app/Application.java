@@ -9,8 +9,15 @@ public class Application {
 	
 	public static void main(String[] args) {
 		Session s = Util.util();
-		Transaction t = s.beginTransaction();
-
+		
+		//fetch who are all did more than 3 projects and have below average performance
+		
+		
+//		Employee emp = new Employee();
+//		PerformanceReview perf = new PerformanceReview();
+//		Project pro = new Project();
+		Transaction t =s.beginTransaction();
+		
 		
 		t.commit();
 	}

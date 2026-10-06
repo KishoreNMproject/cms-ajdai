@@ -1,5 +1,6 @@
 package org.ajdai.CMS.tables;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -8,15 +9,18 @@ public class Leave {
 	
 	@Id
 	private int EmployeeID;
-	
+	@Column(nullable = false)
 	private int totalLeaves;
-	
+	@Column(nullable = false)
 	private String EmployeeName;
 	
 	private int leaveTaken;
+	private int remainingLeaves;
 
-	private int RemainingLeaves;
-	
+	private int Leave() {
+		remainingLeaves = totalLeaves - leaveTaken;
+		return remainingLeaves;
+	}
 	public int getEmployeeID() {
 		return EmployeeID;
 	}
@@ -34,7 +38,7 @@ public class Leave {
 	}
 
 	public void setRemainingLeaves(int remainingLeaves) {
-		this.RemainingLeaves = remainingLeaves;
+		this.remainingLeaves = remainingLeaves;
 	}
 
 	public void takeLeave(int days) {
@@ -47,7 +51,7 @@ public class Leave {
     }
 
     public int getRemainingLeaves() {
-        return totalLeaves - leaveTaken;
+        return Leave();
     }
 
 }
