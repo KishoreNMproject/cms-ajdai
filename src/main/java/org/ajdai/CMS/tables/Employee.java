@@ -4,8 +4,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 
 @Entity
 public class Employee {
@@ -16,17 +14,16 @@ public class Employee {
 
     private String name;
     private String email;
-    @OneToOne
     private double salary;
-
-    private int DepartmentId;
-    @OneToMany
-    private String ProjectName;
+    private int DepartmentID;
 
     public int getId() {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -52,13 +49,11 @@ public class Employee {
         this.salary = salary;
     }
 
+    public int getDepartmentID() {
+        return DepartmentID;
+    }
 
-	public int getDepartmentId() {
-		return DepartmentId;
-	}
-
-
-	public void setDepartmentId(int departmentId) {
-		DepartmentId = departmentId;
-	}
+    public void setDepartmentID(int departmentID) {
+        DepartmentID = departmentID;
+    }
 }
