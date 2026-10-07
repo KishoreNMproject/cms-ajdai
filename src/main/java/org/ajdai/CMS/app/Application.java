@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 import org.ajdai.CMS.HibernateUtil.Util;
 import org.ajdai.CMS.tables.Employee;
 import org.ajdai.CMS.tables.PerformanceReview;
-
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -17,14 +16,15 @@ public class Application {
     public static void main(String[] args) {
 
         Session s = Util.util();
-
         Transaction t = s.beginTransaction();
+
         System.out.println("=====================================================================================");
 
         // Task 1 - Find the top 5 employees in every department
         // based on performance
+
         System.out.println("Task1: Find the top 5 employees in every department based on performance");
-        
+
         System.out.println("=====================================================================================");
 
         List<Employee> employees =
@@ -106,11 +106,16 @@ public class Application {
                 );
             }
         }
+
         System.out.println("=====================================================================================");
+
         // Task 2 - Find employees whose productivity has decreased
         // for 3 consecutive months
-        System.out.println("Task2: Find Employees whose productivity has decreased for 3 consecutive months");
-        
+
+        System.out.println(
+                "Task2: Find Employees whose productivity has decreased for 3 consecutive months"
+        );
+
         System.out.println("=====================================================================================");
 
         for (Employee employee : employees) {
@@ -151,13 +156,17 @@ public class Application {
                 }
             }
         }
+
         System.out.println("=====================================================================================");
 
         // Task 3 - Find departments whose average salary
         // is greater than the company average salary
 
-        System.out.println("Task 3: Find departments whose average salary is greater than"
-        		+ "the company average salary");
+        System.out.println(
+                "Task 3: Find departments whose average salary is greater than"
+                + " the company average salary"
+        );
+
         System.out.println("=====================================================================================");
 
         String hql =
@@ -167,7 +176,7 @@ public class Application {
                 "HAVING AVG(e.salary) > (" +
                 "SELECT AVG(e2.salary) FROM Employee e2" +
                 ")";
-        
+
         List<Object[]> result =
                 s.createQuery(hql, Object[].class)
                  .getResultList();
@@ -179,12 +188,10 @@ public class Application {
                     + " | Average Salary: " + row[1]
             );
         }
-        
+
         System.out.println("=====================================================================================");
 
-
         t.commit();
-
         s.close();
     }
 }
