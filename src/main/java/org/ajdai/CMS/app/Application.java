@@ -1,15 +1,23 @@
 package org.ajdai.CMS.app;
 
+<<<<<<< HEAD
+=======
 import java.util.Comparator;
+>>>>>>> branch 'main' of https://github.com/KishoreNMproject/cms-ajdai.git
 import java.util.List;
 
 import org.ajdai.CMS.HibernateUtil.Util;
 import org.ajdai.CMS.tables.Employee;
+<<<<<<< HEAD
+=======
 import org.ajdai.CMS.tables.PerformanceReview;
+>>>>>>> branch 'main' of https://github.com/KishoreNMproject/cms-ajdai.git
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 public class Application {
+<<<<<<< HEAD
+=======
 
     public static void main(String[] args) {
 
@@ -45,9 +53,45 @@ public class Application {
 
         }
 		Transaction t = s.beginTransaction();
+>>>>>>> branch 'main' of https://github.com/KishoreNMproject/cms-ajdai.git
 
+<<<<<<< HEAD
+    public static void main(String[] args) {
+=======
 		t.commit();
+>>>>>>> branch 'main' of https://github.com/KishoreNMproject/cms-ajdai.git
+
+<<<<<<< HEAD
+        Session s = Util.util();
+
+        Transaction t = s.beginTransaction();
+
+        String hql =
+                "SELECT e.DepartmentID, AVG(e.salary) " +
+                "FROM Employee e " +
+                "GROUP BY e.DepartmentID " +
+                "HAVING AVG(e.salary) > (" +
+                "SELECT AVG(e2.salary) FROM Employee e2" +
+                ")";
+
+        List<Object[]> result =
+                s.createQuery(hql, Object[].class).getResultList();
+
+        for (Object[] row : result) {
+
+            System.out.println(
+                    "Department ID: " + row[0] +
+                    " | Average Salary: " + row[1]
+            );
+        }
+
+        t.commit();
 
         s.close();
     }
 }
+=======
+        s.close();
+    }
+}
+>>>>>>> branch 'main' of https://github.com/KishoreNMproject/cms-ajdai.git

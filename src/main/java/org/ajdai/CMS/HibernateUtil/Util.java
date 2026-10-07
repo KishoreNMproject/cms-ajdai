@@ -1,17 +1,18 @@
 package org.ajdai.CMS.HibernateUtil;
 
-import java.time.LocalDate;
+//import java.time.LocalDate;
 
 import org.ajdai.CMS.tables.Attendance;
 import org.ajdai.CMS.tables.Department;
+import org.ajdai.CMS.tables.Emp_Leave;
 import org.ajdai.CMS.tables.Employee;
-import org.ajdai.CMS.tables.Leave;
+
 import org.ajdai.CMS.tables.PerformanceReview;
 import org.ajdai.CMS.tables.Project;
 import org.ajdai.CMS.tables.Salary;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+//import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 public class Util {
@@ -25,7 +26,7 @@ public class Util {
 				Attendance.class, 
 				Department.class, 
 				Employee.class, 
-				Leave.class, 
+				Emp_Leave.class, 
 				PerformanceReview.class,
 				Project.class, 
 				Salary.class 

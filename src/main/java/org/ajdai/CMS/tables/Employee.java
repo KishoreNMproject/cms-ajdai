@@ -18,6 +18,7 @@ public class Employee {
     private String email;
     @OneToOne
     private double salary;
+    private int DepartmentID;
 
     private int DepartmentId;
     @OneToMany
@@ -52,6 +53,15 @@ public class Employee {
         this.salary = salary;
     }
 
+<<<<<<< HEAD
+    public int getDepartmentID() {
+        return DepartmentID;
+    }
+
+    public void setDepartmentID(int departmentID) {
+        DepartmentID = departmentID;
+    }
+=======
 
 	public int getDepartmentId() {
 		return DepartmentId;
@@ -61,4 +71,5 @@ public class Employee {
 	public void setDepartmentId(int departmentId) {
 		DepartmentId = departmentId;
 	}
+>>>>>>> branch 'main' of https://github.com/KishoreNMproject/cms-ajdai.git
 }
