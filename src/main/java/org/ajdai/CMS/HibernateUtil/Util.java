@@ -1,6 +1,6 @@
 package org.ajdai.CMS.HibernateUtil;
 
-//import java.time.LocalDate;
+import java.time.LocalDate;
 
 import org.ajdai.CMS.tables.Attendance;
 import org.ajdai.CMS.tables.Department;
@@ -11,6 +11,7 @@ import org.ajdai.CMS.tables.Project;
 import org.ajdai.CMS.tables.Salary;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 public class Util {
@@ -38,10 +39,10 @@ public class Util {
 		return sf.openSession();
 	}
 //	public static void main(String[] args) {
-
+//
 //		Session session = Util.util();
 //
-//	    session.beginTransaction();
+//	    Transaction t = session.beginTransaction();
 //
 //	    Employee emp1 = new Employee();
 //	    emp1.setName("Ravi");
@@ -57,19 +58,18 @@ public class Util {
 //	    emp3.setName("Kumar");
 //	    emp3.setEmail("kumar@gmail.com");
 //	    emp3.setSalary(50000);
-//
+
 //	    session.persist(emp1);
 //	    session.persist(emp2);
 //	    session.persist(emp3);
-//
-//	    session.getTransaction().commit();
-//
+
+//	    t.commit();
+
 //	    session.close();
-		
-//		Session session = Util.util();
-//
+	
+
 //        session.beginTransaction();
-//
+
 //        Employee ravi = session.find(Employee.class, 1);
 //        Employee arun = session.find(Employee.class, 2);
 //        Employee kumar = session.find(Employee.class, 3);
@@ -104,7 +104,7 @@ public class Util {
 //        session.persist(review8);
 //        session.persist(review9);
 //
-//        session.getTransaction().commit();
+//        t.commit();
 //
 //        session.close();
 //        System.out.println("done");

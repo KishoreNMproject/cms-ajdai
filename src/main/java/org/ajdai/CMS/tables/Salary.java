@@ -10,7 +10,7 @@ public class Salary {
 	
 	private int Salary;
 	
-	private int totalWorkingDays;
+//	private int totalWorkingDays;
 
 	public int getSalary() {
 		return Salary;
