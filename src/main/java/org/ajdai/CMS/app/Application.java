@@ -45,9 +45,10 @@ public class Application {
         Transaction t = s.beginTransaction();
 
 		t.commit();
+		s.close();
         }
 		
 
-        s.close();
+        
     }
-}
+
