@@ -42,11 +42,11 @@ public class Application {
                 }
             }
         }
-
-        }
-		Transaction t = s.beginTransaction();
+        Transaction t = s.beginTransaction();
 
 		t.commit();
+        }
+		
 
         s.close();
     }
