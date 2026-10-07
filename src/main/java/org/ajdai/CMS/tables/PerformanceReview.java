@@ -1,4 +1,5 @@
 package org.ajdai.CMS.tables;
+
 import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
@@ -10,61 +11,47 @@ import jakarta.persistence.ManyToOne;
 
 @Entity
 public class PerformanceReview {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int reviewId;
-	
-	//private int EmployeeId;
-	
-	@ManyToOne
-	@JoinColumn(name = "employee_id")
-	private Employee employee;
-	
-	private LocalDate reviewDate;
-	
-	private double productivity;
 
-	public int getReviewId() {
-		return reviewId;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int reviewId;
 
-	public void setReviewId(int reviewId) {
-		this.reviewId = reviewId;
-	}
+    @ManyToOne
+    @JoinColumn(name = "employee_id")
+    private Employee employee;
 
-	public Employee getEmployee() {
-		return employee;
-	}
+    private LocalDate reviewDate;
+    private double productivity;
 
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
-	}
+    public int getReviewId() {
+        return reviewId;
+    }
 
-	public LocalDate getReviewDate() {
-		return reviewDate;
-	}
+    public void setReviewId(int reviewId) {
+        this.reviewId = reviewId;
+    }
 
-	public void setReviewDate(LocalDate reviewDate) {
-		this.reviewDate = reviewDate;
-	}
+    public Employee getEmployee() {
+        return employee;
+    }
 
-	public double getProductivity() {
-		return productivity;
-	}
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
 
-	public void setProductivity(double productivity) {
-		this.productivity = productivity;
-	}
-	
-	public PerformanceReview() { //constructor
-	}
-	
-	public PerformanceReview(Employee employee,LocalDate reviewDate , double  productivity) {
-		this.employee = employee;
-		this.reviewDate = reviewDate;
-		this.productivity = productivity;
-	}
-	
-	
+    public LocalDate getReviewDate() {
+        return reviewDate;
+    }
+
+    public void setReviewDate(LocalDate reviewDate) {
+        this.reviewDate = reviewDate;
+    }
+
+    public double getProductivity() {
+        return productivity;
+    }
+
+    public void setProductivity(double productivity) {
+        this.productivity = productivity;
+    }
 }
