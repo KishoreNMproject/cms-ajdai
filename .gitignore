@@ -4,3 +4,4 @@
 .settings/
 *.class
 *.cfg.xml
+*.lock

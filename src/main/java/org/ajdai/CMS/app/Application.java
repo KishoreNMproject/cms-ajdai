@@ -4,20 +4,39 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
 import org.ajdai.CMS.HibernateUtil.Util;
 import org.ajdai.CMS.tables.Employee;
 import org.ajdai.CMS.tables.PerformanceReview;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import java.io.File;
+import java.io.IOException;
+import org.ajdai.CMS.app.inserter.Inserter;
 
 public class Application {
 
     public static void main(String[] args) {
+    	File lockFile = new File("data.lock");
 
+    	if (!lockFile.exists()) {
+
+    	    Inserter.DataInsert();
+
+    	    try {
+    	        lockFile.createNewFile();
+    	        System.out.println("Initial data inserted successfully.");
+    	    } catch (IOException e) {
+    	        System.out.println("Failed to create data lock file.");
+    	        e.printStackTrace();
+    	    }
+
+    	} else {
+
+    	    System.out.println("Initial data already exists. Skipping data insertion.");
+    	}
         Session s = Util.util();
         Transaction t = s.beginTransaction();
-
+        
         System.out.println("=====================================================================================");
 
         // Task 1 - Find the top 5 employees in every department

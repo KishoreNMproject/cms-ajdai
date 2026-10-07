@@ -6,12 +6,14 @@ import org.ajdai.CMS.tables.Department;
 import org.ajdai.CMS.tables.Employee;
 import org.ajdai.CMS.tables.PerformanceReview;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.ajdai.CMS.HibernateUtil.Util;
 
 public class Inserter {
 	public static void DataInsert() {
 		
 		Session s = Util.util();
+		Transaction t = s.beginTransaction();
 		
 		// Departments
 
@@ -249,6 +251,8 @@ public class Inserter {
 		s.persist(p22);
 		s.persist(p23);
 		s.persist(p24);
+		t.commit();
+		s.close();
 	}
 
 }
