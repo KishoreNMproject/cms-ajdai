@@ -8,8 +8,13 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name= "Department")
+@Table(name = "Department")
 public class Department {
+<<<<<<< HEAD
+
+    @Id
+    private int DepartmentID;
+=======
 	
 	
 		@Id
@@ -22,7 +27,13 @@ public class Department {
 		public int getDepartmentID() {
 			return DepartmentID;
 		}
+>>>>>>> branch 'main' of https://github.com/KishoreNMproject/cms-ajdai.git
 
+<<<<<<< HEAD
+    public int getDepartmentID() {
+        return DepartmentID;
+    }
+=======
 		public void setDepartmentID(int departmentID) {
 			DepartmentID = departmentID;
 		}
@@ -37,4 +48,9 @@ public class Department {
 		
 		
 }
+>>>>>>> branch 'main' of https://github.com/KishoreNMproject/cms-ajdai.git
 
+    public void setDepartmentID(int departmentID) {
+        DepartmentID = departmentID;
+    }
+}
