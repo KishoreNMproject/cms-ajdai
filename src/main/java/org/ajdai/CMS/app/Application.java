@@ -9,6 +9,9 @@ import org.ajdai.CMS.tables.Employee;
 import org.ajdai.CMS.tables.PerformanceReview;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+
+
 import java.io.File;
 import java.io.IOException;
 import org.ajdai.CMS.app.inserter.Inserter;
@@ -16,6 +19,9 @@ import org.ajdai.CMS.app.inserter.Inserter;
 public class Application {
 
     public static void main(String[] args) {
+//	    Inserter.DataInsert();
+
+
     	File lockFile = new File("data.lock");
 
     	if (!lockFile.exists()) {
@@ -213,6 +219,32 @@ public class Application {
         System.out.println("=====================================================================================");
         
         //Task 4 code to be placed here...
+        
+        String hql1 = """
+        	    SELECT ep.EmployeeId, COUNT(DISTINCT ep.id)
+        	    FROM Project ep
+        	    JOIN PerformanceReview pr
+        	    ON ep.EmployeeId = pr.employee.id
+        	    WHERE pr.productivity < (
+        	        SELECT AVG(pr2.productivity)
+        	        FROM PerformanceReview pr2
+        	    )
+        	    GROUP BY ep.EmployeeId
+        	    HAVING COUNT(DISTINCT ep.id) > 3
+        	    """;
+
+        	Query<Object[]> query = s.createQuery(hql1, Object[].class);
+
+        	List<Object[]> results = query.getResultList();
+
+        	for (Object[] row : results) {
+        	    System.out.println(
+        	            "Employee ID: " + row[0]
+        	            + ", Project Count: " + row[1]
+        	    );
+        	}
+	
+         
         
         System.out.println("=====================================================================================");
         System.out.println("Task 5: Find employees with unusually high overtime.");
