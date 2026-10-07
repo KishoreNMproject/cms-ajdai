@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Employee {
@@ -14,15 +16,17 @@ public class Employee {
 
     private String name;
     private String email;
+    @OneToOne
     private double salary;
+    @OneToMany
+    private int DepartmentId;
+    @OneToMany
+    private String ProjectName;
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

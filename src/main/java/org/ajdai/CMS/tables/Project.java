@@ -8,6 +8,10 @@ import jakarta.persistence.Id;
 @Entity
 @Table(name = "Project")
 public class Project {
+	
+	@Id
+	private String ProjectName;
+	
 	public String getProjectName() {
 		return ProjectName;
 	}
@@ -16,6 +20,5 @@ public class Project {
 		ProjectName = projectName;
 	}
 
-	@Id
-	private String ProjectName;
+	
 }
