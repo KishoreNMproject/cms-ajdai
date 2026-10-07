@@ -5,7 +5,7 @@ import jakarta.persistence.Id;
 
 
 @Entity
-public class Leave {
+public class Emp_Leave {
 	
 	@Id
 	private int EmployeeID;

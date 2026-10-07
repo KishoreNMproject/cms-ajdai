@@ -18,7 +18,7 @@ public class Employee {
     private String email;
     @OneToOne
     private double salary;
-    @OneToMany
+
     private int DepartmentId;
     @OneToMany
     private String ProjectName;
@@ -51,4 +51,14 @@ public class Employee {
     public void setSalary(double salary) {
         this.salary = salary;
     }
+
+
+	public int getDepartmentId() {
+		return DepartmentId;
+	}
+
+
+	public void setDepartmentId(int departmentId) {
+		DepartmentId = departmentId;
+	}
 }
