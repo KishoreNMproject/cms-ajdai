@@ -2,11 +2,10 @@ package org.ajdai.CMS.tables;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+
 
 @Entity
-@Table(name="employee_leave")
-public class Leave {
+public class Emp_Leave {
 	
 	@Id
 	private int EmployeeID;
@@ -17,7 +16,7 @@ public class Leave {
 	
 	private int leaveTaken;
 
-	private int RemainingLeaves;
+//	private int RemainingLeaves;
 	
 	public int getEmployeeID() {
 		return EmployeeID;
@@ -35,9 +34,9 @@ public class Leave {
 		this.leaveTaken = leaveTaken;
 	}
 
-	public void setRemainingLeaves(int remainingLeaves) {
-		this.RemainingLeaves = remainingLeaves;
-	}
+//	public void setRemainingLeaves(int remainingLeaves) {
+//		this.RemainingLeaves = remainingLeaves;
+//	}
 
 	public void takeLeave(int days) {
         if (days <= getRemainingLeaves()) {

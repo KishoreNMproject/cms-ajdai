@@ -4,8 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Employee {
@@ -16,20 +16,17 @@ public class Employee {
 
     private String name;
     private String email;
+    @OneToOne
     private double salary;
-    
 
-	@ManyToOne
-    @JoinColumn(name="department_id")
-    private Department department;
+    private int DepartmentId;
+    @OneToMany
+    private String ProjectName;
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -54,11 +51,14 @@ public class Employee {
     public void setSalary(double salary) {
         this.salary = salary;
     }
-    public Department getDepartment() {
-  		return department;
-  	}
 
-  	public void setDepartment(Department department) {
-  		this.department = department;
-  	}
+
+	public int getDepartmentId() {
+		return DepartmentId;
+	}
+
+
+	public void setDepartmentId(int departmentId) {
+		DepartmentId = departmentId;
+	}
 }
