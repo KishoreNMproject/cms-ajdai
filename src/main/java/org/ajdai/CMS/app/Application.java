@@ -209,6 +209,15 @@ public class Application {
         }
 
         System.out.println("=====================================================================================");
+        System.out.println("Task 4: Find employees who worked on more than 3 projects but have below-average performance");
+        System.out.println("=====================================================================================");
+        
+        //Task 4 code to be placed here...
+        
+        System.out.println("=====================================================================================");
+        System.out.println("Task 5: Find employees with unusually high overtime.");
+        System.out.println("=====================================================================================");
+
 
         t.commit();
         s.close();
