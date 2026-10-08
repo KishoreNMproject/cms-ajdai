@@ -5,8 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import org.ajdai.CMS.HibernateUtil.Util;
-import org.ajdai.CMS.tables.Employee;
-import org.ajdai.CMS.tables.PerformanceReview;
+import org.ajdai.CMS.tables.*;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -248,6 +247,29 @@ public class Application {
         
         System.out.println("=====================================================================================");
         System.out.println("Task 5: Find employees with unusually high overtime.");
+        System.out.println("=====================================================================================");
+        
+        String hql2 = """
+                SELECT a.EmployeeID, a.OvertimeHours
+                FROM Attendance a
+                WHERE a.OvertimeHours > (
+                    SELECT AVG(a2.OvertimeHours)
+                    FROM Attendance a2
+                )
+                """;
+
+        Query<Object[]> query2 = s.createQuery(hql2, Object[].class);
+
+        List<Object[]> results2 = query2.getResultList();
+
+        for (Object[] row : results2) {
+
+            System.out.println(
+                    "Employee ID: " + row[0]
+                    + " | Overtime Hours: " + row[1]
+            );
+        }
+        
         System.out.println("=====================================================================================");
 
 
