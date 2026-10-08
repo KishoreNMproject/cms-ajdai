@@ -15,6 +15,7 @@ public class Emp_Leave {
 
     private int leaveTaken;
 
+    @SuppressWarnings("unused")
     private int RemainingLeaves;
 
     public int getEmployeeID() {
@@ -37,16 +38,34 @@ public class Emp_Leave {
         this.RemainingLeaves = remainingLeaves;
     }
 
+    public int getRemainingLeaves() {
+        return totalLeaves - leaveTaken;
+    }
+
+    public void setTotalLeaves(int totalLeaves) {
+        this.totalLeaves = totalLeaves;
+    }
+
+    public String getEmployeeName() {
+        return EmployeeName;
+    }
+
+    public void setEmployeeName(String employeeName) {
+        EmployeeName = employeeName;
+    }
+
     public void takeLeave(int days) {
         if (days <= getRemainingLeaves()) {
             leaveTaken += days;
-            System.out.println(days + " day(s) of leave approved for " + EmployeeName + ".");
+            System.out.println(
+                days + " day(s) of leave approved for "
+                + EmployeeName + "."
+            );
         } else {
-            System.out.println("Error: Insufficient leave balance for " + EmployeeName + ".");
+            System.out.println(
+                "Error: Insufficient leave balance for "
+                + EmployeeName + "."
+            );
         }
-    }
-
-    public int getRemainingLeaves() {
-        return totalLeaves - leaveTaken;
     }
 }

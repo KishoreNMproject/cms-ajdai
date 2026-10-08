@@ -10,35 +10,13 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-
-import java.io.File;
-import java.io.IOException;
 import org.ajdai.CMS.app.inserter.Inserter;
 
 public class Application {
 
     public static void main(String[] args) {
-//	    Inserter.DataInsert();
+	    Inserter.DataInsert();
 
-
-    	File lockFile = new File("data.lock");
-
-    	if (!lockFile.exists()) {
-
-    	    Inserter.DataInsert();
-
-    	    try {
-    	        lockFile.createNewFile();
-    	        System.out.println("Initial data inserted successfully.");
-    	    } catch (IOException e) {
-    	        System.out.println("Failed to create data lock file.");
-    	        e.printStackTrace();
-    	    }
-
-    	} else {
-
-    	    System.out.println("Initial data already exists. Skipping data insertion.");
-    	}
         Session s = Util.util();
         Transaction t = s.beginTransaction();
         

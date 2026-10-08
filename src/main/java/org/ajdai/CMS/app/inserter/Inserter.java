@@ -1,24 +1,32 @@
 package org.ajdai.CMS.app.inserter;
 
 import java.time.LocalDate;
+import java.util.List;
 
-import org.ajdai.CMS.tables.Attendance;
-import org.ajdai.CMS.tables.Department;
-import org.ajdai.CMS.tables.Employee;
-import org.ajdai.CMS.tables.PerformanceReview;
-import org.ajdai.CMS.tables.Project;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.ajdai.CMS.HibernateUtil.Util;
+import org.ajdai.CMS.tables.*;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.query.NativeQuery;
 
 public class Inserter {
 
     public static void DataInsert() {
 
+        // Wipe existing database tables
+        wipeDatabase();
+
         Session s = Util.util();
         Transaction t = s.beginTransaction();
 
+        // =========================
         // Departments
+        // =========================
 
         Department d1 = new Department();
         d1.setDepartmentID(1);
@@ -29,8 +37,9 @@ public class Inserter {
         s.persist(d1);
         s.persist(d2);
 
-
+        // =========================
         // Employees
+        // =========================
 
         Employee e1 = new Employee();
         e1.setName("Arun");
@@ -89,11 +98,11 @@ public class Inserter {
         s.persist(e7);
         s.persist(e8);
 
-
+        // =========================
         // Performance Reviews
+        // =========================
 
         // Arun: 70, 70, 70
-
         PerformanceReview p1 = new PerformanceReview();
         p1.setEmployee(e1);
         p1.setReviewDate(LocalDate.of(2026, 1, 1));
@@ -109,9 +118,7 @@ public class Inserter {
         p3.setReviewDate(LocalDate.of(2026, 3, 1));
         p3.setProductivity(70);
 
-
         // Ravi: 90, 80, 70
-
         PerformanceReview p4 = new PerformanceReview();
         p4.setEmployee(e2);
         p4.setReviewDate(LocalDate.of(2026, 1, 1));
@@ -127,9 +134,7 @@ public class Inserter {
         p6.setReviewDate(LocalDate.of(2026, 3, 1));
         p6.setProductivity(70);
 
-
         // Kumar: 95, 85, 75
-
         PerformanceReview p7 = new PerformanceReview();
         p7.setEmployee(e3);
         p7.setReviewDate(LocalDate.of(2026, 1, 1));
@@ -145,9 +150,7 @@ public class Inserter {
         p9.setReviewDate(LocalDate.of(2026, 3, 1));
         p9.setProductivity(75);
 
-
         // Vijay: 88, 88, 88
-
         PerformanceReview p10 = new PerformanceReview();
         p10.setEmployee(e4);
         p10.setReviewDate(LocalDate.of(2026, 1, 1));
@@ -163,9 +166,7 @@ public class Inserter {
         p12.setReviewDate(LocalDate.of(2026, 3, 1));
         p12.setProductivity(88);
 
-
         // Ajay: 82, 82, 82
-
         PerformanceReview p13 = new PerformanceReview();
         p13.setEmployee(e5);
         p13.setReviewDate(LocalDate.of(2026, 1, 1));
@@ -181,11 +182,7 @@ public class Inserter {
         p15.setReviewDate(LocalDate.of(2026, 3, 1));
         p15.setProductivity(82);
 
-
-        // Department 2
-
         // Suresh: 65, 65, 65
-
         PerformanceReview p16 = new PerformanceReview();
         p16.setEmployee(e6);
         p16.setReviewDate(LocalDate.of(2026, 1, 1));
@@ -201,9 +198,7 @@ public class Inserter {
         p18.setReviewDate(LocalDate.of(2026, 3, 1));
         p18.setProductivity(65);
 
-
         // Manoj: 75, 75, 75
-
         PerformanceReview p19 = new PerformanceReview();
         p19.setEmployee(e7);
         p19.setReviewDate(LocalDate.of(2026, 1, 1));
@@ -219,9 +214,7 @@ public class Inserter {
         p21.setReviewDate(LocalDate.of(2026, 3, 1));
         p21.setProductivity(75);
 
-
         // Dinesh: 60, 60, 60
-
         PerformanceReview p22 = new PerformanceReview();
         p22.setEmployee(e8);
         p22.setReviewDate(LocalDate.of(2026, 1, 1));
@@ -236,7 +229,6 @@ public class Inserter {
         p24.setEmployee(e8);
         p24.setReviewDate(LocalDate.of(2026, 3, 1));
         p24.setProductivity(60);
-
 
         s.persist(p1);
         s.persist(p2);
@@ -263,13 +255,11 @@ public class Inserter {
         s.persist(p23);
         s.persist(p24);
 
-
+        // =========================
         // Projects
+        // =========================
 
-        // Suresh: 5 projects
-        // Suresh has below-average performance (65)
-        // so he should qualify for Task 4.
-
+        // Suresh - 5 projects
         Project project1 = new Project();
         project1.setProjectName("Project A");
         project1.setEmployeeId(e6.getId());
@@ -290,10 +280,7 @@ public class Inserter {
         project5.setProjectName("Project E");
         project5.setEmployeeId(e6.getId());
 
-
-        // Manoj: 3 projects
-        // Does not qualify because it is not more than 3.
-
+        // Manoj - 3 projects
         Project project6 = new Project();
         project6.setProjectName("Project F");
         project6.setEmployeeId(e7.getId());
@@ -306,7 +293,6 @@ public class Inserter {
         project8.setProjectName("Project H");
         project8.setEmployeeId(e7.getId());
 
-
         s.persist(project1);
         s.persist(project2);
         s.persist(project3);
@@ -316,8 +302,9 @@ public class Inserter {
         s.persist(project7);
         s.persist(project8);
 
-
+        // =========================
         // Attendance
+        // =========================
 
         Attendance a1 = new Attendance();
         a1.setEmployeeID(String.valueOf(e1.getId()));
@@ -367,7 +354,6 @@ public class Inserter {
         a8.setDaysPresent(19);
         a8.setOvertimeHours(2);
 
-
         s.persist(a1);
         s.persist(a2);
         s.persist(a3);
@@ -377,8 +363,191 @@ public class Inserter {
         s.persist(a7);
         s.persist(a8);
 
+        // =========================
+        // Employee Leave
+        // =========================
+
+        Emp_Leave l1 = new Emp_Leave();
+        l1.setEmployeeID(e1.getId());
+        l1.setEmployeeName(e1.getName());
+        l1.setTotalLeaves(20);
+        l1.setLeaveTaken(5);
+        l1.setRemainingLeaves(15);
+
+        Emp_Leave l2 = new Emp_Leave();
+        l2.setEmployeeID(e2.getId());
+        l2.setEmployeeName(e2.getName());
+        l2.setTotalLeaves(20);
+        l2.setLeaveTaken(3);
+        l2.setRemainingLeaves(17);
+
+        Emp_Leave l3 = new Emp_Leave();
+        l3.setEmployeeID(e3.getId());
+        l3.setEmployeeName(e3.getName());
+        l3.setTotalLeaves(20);
+        l3.setLeaveTaken(8);
+        l3.setRemainingLeaves(12);
+
+        Emp_Leave l4 = new Emp_Leave();
+        l4.setEmployeeID(e4.getId());
+        l4.setEmployeeName(e4.getName());
+        l4.setTotalLeaves(20);
+        l4.setLeaveTaken(2);
+        l4.setRemainingLeaves(18);
+
+        Emp_Leave l5 = new Emp_Leave();
+        l5.setEmployeeID(e5.getId());
+        l5.setEmployeeName(e5.getName());
+        l5.setTotalLeaves(20);
+        l5.setLeaveTaken(6);
+        l5.setRemainingLeaves(14);
+
+        Emp_Leave l6 = new Emp_Leave();
+        l6.setEmployeeID(e6.getId());
+        l6.setEmployeeName(e6.getName());
+        l6.setTotalLeaves(20);
+        l6.setLeaveTaken(10);
+        l6.setRemainingLeaves(10);
+
+        Emp_Leave l7 = new Emp_Leave();
+        l7.setEmployeeID(e7.getId());
+        l7.setEmployeeName(e7.getName());
+        l7.setTotalLeaves(20);
+        l7.setLeaveTaken(4);
+        l7.setRemainingLeaves(16);
+
+        Emp_Leave l8 = new Emp_Leave();
+        l8.setEmployeeID(e8.getId());
+        l8.setEmployeeName(e8.getName());
+        l8.setTotalLeaves(20);
+        l8.setLeaveTaken(7);
+        l8.setRemainingLeaves(13);
+
+        s.persist(l1);
+        s.persist(l2);
+        s.persist(l3);
+        s.persist(l4);
+        s.persist(l5);
+        s.persist(l6);
+        s.persist(l7);
+        s.persist(l8);
+
+        // =========================
+        // Commit
+        // =========================
 
         t.commit();
         s.close();
+    }
+
+    // =========================
+    // Database Wiper
+    // =========================
+
+	private static void wipeDatabase() {
+
+        StandardServiceRegistry registry =
+                new StandardServiceRegistryBuilder()
+                        .configure("hibernate.cfg.xml")
+                        .build();
+
+        try (
+            SessionFactory sessionFactory =
+                    new MetadataSources(registry)
+                            .buildMetadata()
+                            .buildSessionFactory();
+
+            Session session = sessionFactory.openSession()
+        ) {
+
+            Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
+
+            String connectionUrl =
+                    cfg.getProperty("hibernate.connection.url");
+
+            String databaseName =
+                    connectionUrl.substring(
+                            connectionUrl.lastIndexOf("/") + 1
+                    );
+
+            if (databaseName.contains("?")) {
+                databaseName =
+                        databaseName.substring(
+                                0,
+                                databaseName.indexOf("?")
+                        );
+            }
+
+            System.out.println("Targeting Database: " + databaseName);
+
+            Transaction transaction = session.beginTransaction();
+
+            try {
+
+                String fetchTablesSql =
+                        "SELECT table_name " +
+                        "FROM information_schema.tables " +
+                        "WHERE table_schema = :dbName";
+
+                NativeQuery<String> fetchQuery =
+                        session.createNativeQuery(
+                                fetchTablesSql,
+                                String.class
+                        );
+
+                fetchQuery.setParameter("dbName", databaseName);
+
+                List<String> tableNames =
+                        fetchQuery.getResultList();
+
+                if (!tableNames.isEmpty()) {
+
+                	session.createNativeMutationQuery(
+                		    "SET FOREIGN_KEY_CHECKS = 0"
+                		).executeUpdate();
+
+                    for (String tableName : tableNames) {
+
+                        String dropSql =
+                                "DROP TABLE IF EXISTS `" +
+                                tableName +
+                                "`";
+
+                        session.createNativeMutationQuery(dropSql)
+                        .executeUpdate();
+
+                        
+                    }
+
+                    session.createNativeMutationQuery(
+                    	    "SET FOREIGN_KEY_CHECKS = 1"
+                    		).executeUpdate();
+
+                } 
+                
+
+                transaction.commit();
+
+                System.out.println(
+                        "Database tables reset successfully."
+                );
+
+            } catch (Exception e) {
+
+                if (transaction != null) {
+                    transaction.rollback();
+                }
+
+                e.printStackTrace();
+            }
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        } finally {
+
+            StandardServiceRegistryBuilder.destroy(registry);
+        }
     }
 }
